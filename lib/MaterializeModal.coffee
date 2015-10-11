@@ -51,7 +51,9 @@ class @MaterializeModalClass
     #
     @injectContainer()
     #
-    # (2) If there is a bodyTemplate,
+    # (2) If there is a bodyTemplate, we want its events to be handled
+    #     by Template.materializeModal -- this way, we can expose events
+    #     originating from footerTemplate directly into bodyTemplate events!
     #
     if options.bodyTemplate?
       Template.materializeModal.inheritsEventsFrom options.bodyTemplate
