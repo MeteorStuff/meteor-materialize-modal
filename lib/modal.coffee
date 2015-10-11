@@ -71,14 +71,14 @@ Template.materializeModal.onDestroyed ->
 
 
 Template.materializeModal.helpers
-  
+
   #
   # bodyTemplate: The name of the template that should be rendered
   #               in the modal's body area.
   #
   bodyTemplate: ->
     @bodyTemplate or null
-  
+
   #
   # icon: Return a Material icon code for the Modal.
   #
@@ -92,22 +92,16 @@ Template.materializeModal.helpers
           'warning'
         when 'error'
           'error'
-  
+
   #
   # modalFooter:
   #
   modalFooter: ->
     @footerTemplate or 'materializeModalFooter'
-  
-  #
-  # modalFooterData:
-  #
-  modalFooterData: ->
-    _.extend({}, @, @footerTemplateData)
 
 
 Template.materializeModal.events
-  
+
   "click #closeButton": (e, tmpl) ->
     e.preventDefault()
     console.log('closeButton') if DEBUG
