@@ -71,14 +71,14 @@ Template.materializeModal.onDestroyed ->
 
 
 Template.materializeModal.helpers
-  
+
   #
   # bodyTemplate: The name of the template that should be rendered
   #               in the modal's body area.
   #
   bodyTemplate: ->
     @bodyTemplate or null
-  
+
   #
   # icon: Return a Material icon code for the Modal.
   #
@@ -92,22 +92,20 @@ Template.materializeModal.helpers
           'warning'
         when 'error'
           'error'
-  
+
   #
   # modalFooter:
   #
   modalFooter: ->
     @footerTemplate or 'materializeModalFooter'
-  
-  #
-  # modalFooterData:
-  #
-  modalFooterData: ->
-    _.extend({}, @, @footerTemplateData)
 
+#
+# Extend data context helpers (title, footer, etc.) into the modal
+# body wrapper.
+#
+Template.materializeModalBody.inheritsHelpersFrom "materializeModal"
 
 Template.materializeModal.events
-  
   "click #closeButton": (e, tmpl) ->
     e.preventDefault()
     console.log('closeButton') if DEBUG
@@ -129,8 +127,3 @@ Template.materializeModalForm.helpers
   #
   isForm: ->
     @type in [ 'form', 'prompt' ]
-
-
-Template.materializeModalStatus.helpers
-  progressMessage: ->
-    #....
