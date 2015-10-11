@@ -18,6 +18,7 @@ Package.onUse(function(api, where) {
 
   api.use([
     'softwarerero:accounts-t9n@1.1.4',
+    'aldeed:template-extension@3.4.3',
     'coffeescript'
   ], ["client"]);
 

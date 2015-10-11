@@ -51,7 +51,13 @@ class @MaterializeModalClass
     #
     @injectContainer()
     #
-    # (2) Update the this.options ReactiveVar, which will
+    # (2) If there is a bodyTemplate,
+    #
+    if options.bodyTemplate?
+      Template.materializeModal.inheritsEventsFrom options.bodyTemplate
+      delete Template[options.bodyTemplate].__eventMaps
+    #
+    # (3) Update the this.options ReactiveVar, which will
     #     cause the dynamic Template inside materializeModalContainer
     #     to re-render.
     #
@@ -224,7 +230,7 @@ class @MaterializeModalClass
     result = {}
     for key in form?.serializeArray()
       @addValueToObjFromDotString(result, key.name, key.value)
-    
+
     # Override the result with the boolean values of checkboxes, if any
     for check in form?.find "input:checkbox"
       if $(check).prop('name')
@@ -262,11 +268,11 @@ class @MaterializeModalClass
   doSubmitCallback: (context) ->
     options = @templateOptions.get()
     return true unless options.callback?
-    
+
     try
       response =
         submit: true
-      
+
       switch options.type
         when 'prompt'
           response.value = $(options.inputSelector).val()
@@ -281,7 +287,7 @@ class @MaterializeModalClass
         console.error("MaterializeModal Callback returned Error", error)
         Materialize.toast(error.reason, 3000, 'toast-error')
         return false
-    
+
     catch error
       options.callback(error, null)
     true
