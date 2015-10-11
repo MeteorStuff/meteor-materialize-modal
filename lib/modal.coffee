@@ -99,9 +99,13 @@ Template.materializeModal.helpers
   modalFooter: ->
     @footerTemplate or 'materializeModalFooter'
 
+#
+# Extend data context helpers (title, footer, etc.) into the modal
+# body wrapper.
+#
+Template.materializeModalBody.inheritsHelpersFrom "materializeModal"
 
 Template.materializeModal.events
-
   "click #closeButton": (e, tmpl) ->
     e.preventDefault()
     console.log('closeButton') if DEBUG
@@ -123,8 +127,3 @@ Template.materializeModalForm.helpers
   #
   isForm: ->
     @type in [ 'form', 'prompt' ]
-
-
-Template.materializeModalStatus.helpers
-  progressMessage: ->
-    #....
