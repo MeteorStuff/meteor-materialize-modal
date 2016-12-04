@@ -27,7 +27,7 @@ class @MaterializeModalClass
     #
     # $modal:           This is a jQuery handle on the #materializeModal
     #                   DOM node itself.  This is the object we call
-    #                   .openModal() and .closeModal() on.
+    #                   .modal('open') and .modal('close')
     #
     @$modal = null
 
@@ -89,10 +89,12 @@ class @MaterializeModalClass
       #
       if cbSuccess
         if closeModal
-          @$modal.closeModal
-            out_duration: options.outDuration
-            complete: =>
-              @templateOptions.set null
+          # @$modal.modal
+          #   out_duration: options.outDuration
+          #   complete: =>
+          #     @templateOptions.set null
+          @$modal.modal('close')
+          @templateOptions.set null
         else
           @templateOptions.set null
 

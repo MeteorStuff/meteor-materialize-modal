@@ -36,6 +36,10 @@ Template.materializeModal.onCreated ->
     # Hopefully this will warn someone trying to use this package without first including Materializecss !!!
     throw new Error("MaterializeModal requires Materializecss !!!")
 
+  if Materialize.openModal?
+    throw new Error("MaterializeModal 1.1+ requires Materializecss v0.97.8 or greater!  Use 1.0 for earlier versions of Materializecss")
+
+
 
 Template.materializeModal.onRendered ->
   console.log("Template.materializeModal.onRendered", @data.title)  if DEBUG
@@ -64,7 +68,7 @@ Template.materializeModal.onRendered ->
   # if the user "completes" the modal, for instance by clicking
   # the background.
   #
-  MaterializeModal.$modal.openModal
+  MaterializeModal.$modal.modal  #openModal
     dismissible: @data.dismissible   # Modal can be dismissed by clicking outside of the modal
     opacity: @data.opacity           # Opacity of modal background
     in_duration: inDuration          # Transition in duration
@@ -79,6 +83,8 @@ Template.materializeModal.onRendered ->
     complete: ->
       console.log("materializeModal: complete") if DEBUG
       MaterializeModal.close(false, null, false)
+
+  MaterializeModal.$modal.modal('open')
 
 
 Template.materializeModal.onDestroyed ->
