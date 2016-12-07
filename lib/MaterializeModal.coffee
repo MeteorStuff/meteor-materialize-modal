@@ -9,7 +9,7 @@ class @MaterializeModalClass
     message: ''
     type: 'message'
     closeLabel: null
-    submitLabel: t9nIt('ok')
+    submitLabel: 'ok'
     inputSelector: '#prompt-input'
     callback: null
     dismissible: true
