@@ -1,7 +1,7 @@
 Package.describe({
   name: "meteorstuff:materialize-modal",
   summary: "Display a modal via Materialize written in coffeescript",
-  version: "1.1.0",
+  version: "1.1.1",
   git: "https://github.com/MeteorStuff/meteor-materialize-modal.git"
 });
 
@@ -17,7 +17,7 @@ Package.onUse(function(api, where) {
   ], 'client');
 
   api.use([
-    'softwarerero:accounts-t9n@1.3.3',
+    'softwarerero:accounts-t9n@1.3.8',
     'coffeescript'
   ], ["client"]);
 
