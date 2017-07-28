@@ -57,8 +57,7 @@ Template.materializeModal.onRendered ->
   #
   if @data.fullscreen then inDuration = 0 else 300
 
-  if @data.inDuration
-    inDuration = @data.inDuration
+  inDuration = @data.inDuration or 300
 
   #
   # (3) Call Materialize's openModal() method to make
@@ -68,23 +67,18 @@ Template.materializeModal.onRendered ->
   # if the user "completes" the modal, for instance by clicking
   # the background.
   #
-  MaterializeModal.$modal.modal  #openModal
-    dismissible: @data.dismissible   # Modal can be dismissed by clicking outside of the modal
-    opacity: @data.opacity           # Opacity of modal background
-    in_duration: inDuration          # Transition in duration
-    out_duration: @data.outDuration  # Transition out duration
-
-
-    ready: =>
+  MaterializeModal.$modal.modal  'open',
+    dismissible: @data.dismissible          # Modal can be dismissed by clicking outside of the modal
+    opacity: @data.opacity                  # Opacity of modal background
+    in_duration: inDuration                 # Transition in duration
+    out_duration: @data.outDuration or 200  # Transition out duration
+    ready: (modal, trigger) =>
       console.log("materializeModal: ready") if DEBUG
       @data.ready?()
-
-
     complete: ->
       console.log("materializeModal: complete") if DEBUG
       MaterializeModal.close(false, null, false)
 
-  MaterializeModal.$modal.modal('open')
 
 
 Template.materializeModal.onDestroyed ->
@@ -128,7 +122,7 @@ Template.materializeModal.helpers
 
 
 Template.materializeModal.events
-  
+
   "click #closeButton": (e, tmpl) ->
     e.preventDefault()
     console.log('closeButton') if DEBUG

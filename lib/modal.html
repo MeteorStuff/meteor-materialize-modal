@@ -1,7 +1,6 @@
 
 <template name="materializeModalContainer">
   {{#if modalOptions}}
-    <!--  if modalOptions is null, do not render anything! -->
     {{#with modalOptions}}
       {{> materializeModal }}
     {{/with}}
@@ -50,7 +49,7 @@
       <button id="submitButton" type="submit" class="waves-effect btn-flat {{btnSize}}">{{{submitLabel}}}</button>
     {{/if}}
     {{#if closeLabel}}
-      <button id="closeButton" class="waves-effect btn-flat {{btnSize}}">{{{closeLabel}}}</button>
+      <button id="closeButton" class="waves-effect modal-close btn-flat {{btnSize}}">{{{closeLabel}}}</button>
     {{/if}}
   </div>
 </template>
