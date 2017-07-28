@@ -67,7 +67,7 @@ Template.materializeModal.onRendered ->
   # if the user "completes" the modal, for instance by clicking
   # the background.
   #
-  MaterializeModal.$modal.modal  'open',
+  MaterializeModal.$modal.modal
     dismissible: @data.dismissible          # Modal can be dismissed by clicking outside of the modal
     opacity: @data.opacity                  # Opacity of modal background
     in_duration: inDuration                 # Transition in duration
@@ -79,7 +79,8 @@ Template.materializeModal.onRendered ->
       console.log("materializeModal: complete") if DEBUG
       MaterializeModal.close(false, null, false)
 
-
+  # I wish they would make up their mind...
+  MaterializeModal.$modal.modal('open')
 
 Template.materializeModal.onDestroyed ->
   console.log("Template.materializeModal.onDestroyed") if DEBUG
