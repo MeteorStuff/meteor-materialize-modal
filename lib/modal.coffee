@@ -76,8 +76,9 @@ Template.materializeModal.onRendered ->
       console.log("materializeModal: ready") if DEBUG
       @data.ready?()
     complete: ->
-      console.log("materializeModal: complete") if DEBUG
+      console.log("materializeModal: modal complete") if DEBUG
       MaterializeModal.close(false, null, false)
+      MaterializeModal.complete()
 
   # I wish they would make up their mind...
   MaterializeModal.$modal.modal('open')

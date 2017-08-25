@@ -12,9 +12,11 @@ class @MaterializeModalClass
     submitLabel: 'ok'
     inputSelector: '#prompt-input'
     callback: null
+    complete: null
     dismissible: true
     outDuration: 200
     opacity: 0.5
+    noAutoCloseOnSubmit: false
 
 
   constructor: ->
@@ -51,6 +53,8 @@ class @MaterializeModalClass
   open: (options) ->
     console.log("MaterializeModal.open()", @) if DEBUG
     
+    @onComplete = null
+
     #
     # (1) Make sure there's a modal container.
     #
@@ -61,7 +65,7 @@ class @MaterializeModalClass
     #     cause the dynamic Template inside materializeModalContainer
     #     to re-render.
     #
-    @templateOptions.set options
+    @templateOptions.set(options)
 
 
   #
@@ -82,6 +86,8 @@ class @MaterializeModalClass
       #
       if submit
         cbSuccess = @doSubmitCallback(context)
+        if options.noAutoCloseOnSubmit
+          closeModal = false
       else
         cbSuccess = @doCancelCallback()
       #
@@ -97,6 +103,17 @@ class @MaterializeModalClass
           @templateOptions.set null
         else
           @templateOptions.set null
+
+
+  closeModal: (@onComplete) =>
+    @$modal.modal('close')
+    @templateOptions.set null
+
+
+  complete: =>
+    console.log("MaterializeModal: complete", @complete) if DEBUG
+    @onComplete?()
+    @onComplete = null
 
 
   #
