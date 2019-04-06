@@ -32,11 +32,11 @@ Template.materializeModalContainer.helpers
 Template.materializeModal.onCreated ->
   console.log("Template.materializeModal.onCreated", @data) if DEBUG
 
-  if not Materialize?
+  if not M?
     # Hopefully this will warn someone trying to use this package without first including Materializecss !!!
     throw new Error("MaterializeModal requires Materializecss !!!")
 
-  if Materialize.openModal?
+  if M.openModal?
     throw new Error("MaterializeModal 1.1+ requires Materializecss v0.97.8 or greater!  Use 1.0 for earlier versions of Materializecss")
 
 
@@ -72,10 +72,10 @@ Template.materializeModal.onRendered ->
     opacity: @data.opacity                  # Opacity of modal background
     in_duration: inDuration                 # Transition in duration
     out_duration: @data.outDuration or 200  # Transition out duration
-    ready: (modal, trigger) =>
+    onOpenEnd: (modal, trigger) =>
       console.log("materializeModal: ready") if DEBUG
       @data.ready?()
-    complete: ->
+    onCloseEnd: ->
       console.log("materializeModal: modal complete") if DEBUG
       MaterializeModal.close(false, null, false)
       MaterializeModal.complete()

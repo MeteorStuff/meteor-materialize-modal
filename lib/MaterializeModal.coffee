@@ -2,6 +2,7 @@
 DEBUG = false
 
 
+
 class @MaterializeModalClass
 
   defaults:
@@ -199,7 +200,7 @@ class @MaterializeModalClass
 
   progress: (options = {}) ->
     if not options.progress?
-      Materialize.toast t9nIt "Error: No progress value specified!", 3000, "red"
+      M.toast t9nIt "Error: No progress value specified!", 3000, "red"
     else
       options.progress = parseInt(100 * options.progress).toString() + "%" # prettify progress value!
       _.defaults options,
@@ -214,7 +215,7 @@ class @MaterializeModalClass
   form: (options = {}) ->
     console.log("form options", options) if DEBUG
     if not options.bodyTemplate?
-      Materialize.toast(t9nIt("Error: No bodyTemplate specified!"), 3000, "red")
+      M.toast(t9nIt("Error: No bodyTemplate specified!"), 3000, "red")
     else
       _.defaults options,
         type: 'form'
@@ -309,7 +310,7 @@ class @MaterializeModalClass
         options.callback(null, response)
       catch error
         console.error("MaterializeModal Callback returned Error", error, response)
-        Materialize.toast(error.reason, 3000, 'toast-error')
+        M.toast(error.reason, 3000, 'toast-error')
         return false
     
     catch error
