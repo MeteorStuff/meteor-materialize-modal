@@ -178,6 +178,7 @@ class @MaterializeModalClass
   prompt: (options = {}) ->
     _.defaults options,
       type: 'prompt'
+      inputType: 'text'
       message: t9nIt 'Feedback?'
       title: t9nIt 'Prompt'
       bodyTemplate: 'materializeModalPrompt'
