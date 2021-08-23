@@ -302,6 +302,8 @@ class @MaterializeModalClass
       switch options.type
         when 'prompt'
           response.value = $(options.inputSelector).val()
+          if options.inputType is 'file'
+            response.files = $(options.inputSelector)[0].files
         when 'form'
           if context.form?
             response.form = @fromForm(context.form)
