@@ -135,10 +135,18 @@ Template.materializeModal.events
     form = tmpl.$('form#materializeModalForm')  # This returns the main form defined in this template
     if form.find('form')?.length > 0
       form = form.find('form')  # If the body contains a form then we use that.
-    console.log('submit event:', e, "form:", form) if DEBUG
-    MaterializeModal.close true,
-      event: e
-      form: form
+    console.log('submit event:', e, "form:", form, @) if DEBUG
+    if @submitable?
+      if @submitable(MaterializeModal.fromForm(form))
+        MaterializeModal.close true,
+          event: e
+          form: form
+      else
+        return
+    else
+      MaterializeModal.close true,
+        event: e
+        form: form
     false # this prevents the page from refreshing on form submission!
 
 
