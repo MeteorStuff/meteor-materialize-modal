@@ -18,7 +18,7 @@ Package.onUse(function(api, where) {
 
   api.use([
     'softwarerero:accounts-t9n',
-    'coffeescript'
+    'coffeescript@1.2.3||2.0.0'
   ], ["client"]);
 
   api.addFiles([
