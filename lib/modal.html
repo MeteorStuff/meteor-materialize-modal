@@ -1,9 +1,7 @@
 
 <template name="materializeModalContainer">
   {{#if modalOptions}}
-    {{#with modalOptions}}
-      {{> materializeModal }}
-    {{/with}}
+      {{> materializeModal modalOptions }}
   {{/if}}
 </template>
 
